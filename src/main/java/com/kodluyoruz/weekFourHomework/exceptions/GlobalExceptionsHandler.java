@@ -19,7 +19,7 @@ public class GlobalExceptionsHandler {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<String> unknownError(RuntimeException exception){
-        log.error("AN UNKONW ERROR OCCURED");
+        log.error("AN UNKONW ERROR OCCURED : " + exception.getStackTrace()+"\n++\n"+exception.getLocalizedMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("unknown Error");
 
     }
