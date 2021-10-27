@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -29,5 +30,16 @@ public class User extends BaseEntity {
 
     @Column(length = 100,nullable = false)
     private String password;
+
+    @Column()
+    @OneToOne
+    private Basket Basket;
+
+
+    @OneToMany
+    private List<Order> OrderNos;
+
+
+
 
 }
