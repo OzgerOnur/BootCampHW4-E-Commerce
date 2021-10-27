@@ -4,6 +4,7 @@ import com.kodluyoruz.weekFourHomework.exceptions.errors.NotFoundException;
 import com.kodluyoruz.weekFourHomework.model.dto.CategoryDto;
 import com.kodluyoruz.weekFourHomework.model.dto.ProductDto;
 import com.kodluyoruz.weekFourHomework.model.entity.Category;
+import com.kodluyoruz.weekFourHomework.model.entity.Product;
 import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateCategoryRequest;
 import com.kodluyoruz.weekFourHomework.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -42,5 +43,17 @@ public class CategoryService {
     public List<CategoryDto> getSubCategory(int id) {
         Category category = repository.findById(id).orElseThrow(() -> new NotFoundException());
         return CATEGORY_MAPPER.toCategoryDtoList(category.getSubCategoryList());
+    }
+
+    public CategoryDto updateCategory(int id, CreateUpdateCategoryRequest request) {
+        Category category = getCategoryEntity(id);
+        CATEGORY_MAPPER.updateCategory(category, request);
+
+        Category updatedCategory = repository.save(category);
+        return CATEGORY_MAPPER.toCategoryDto(updatedCategory);
+    }
+
+    private Category getCategoryEntity(int id) {
+        return repository.findById(id).orElseThrow(() -> new NotFoundException());
     }
 }

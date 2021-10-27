@@ -3,6 +3,7 @@ package com.kodluyoruz.weekFourHomework.controller;
 import com.kodluyoruz.weekFourHomework.model.dto.CategoryDto;
 import com.kodluyoruz.weekFourHomework.model.dto.ProductDto;
 import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateCategoryRequest;
+import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateProductRequest;
 import com.kodluyoruz.weekFourHomework.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,11 @@ public class CategoryController {
     @GetMapping("{id}/parent")
     public CategoryDto getParentCategory(@PathVariable int id){
         return service.getParentCategory(id);
+    }
+
+    @PatchMapping("{id}")
+    public CategoryDto updateCategory(@PathVariable int id, @RequestBody CreateUpdateCategoryRequest request) {
+        return service.updateCategory(id, request);
     }
 
     @GetMapping("{id}/subcategories ")

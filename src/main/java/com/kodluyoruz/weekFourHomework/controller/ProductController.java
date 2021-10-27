@@ -28,7 +28,7 @@ public class ProductController {
         return service.getProduct(id);
     }
 
-    @PutMapping("{id}")
+    @PatchMapping("{id}")
     public ProductDto updateProduct(@PathVariable int id, @RequestBody CreateUpdateProductRequest request) {
         return service.updateProduct(id, request);
     }
