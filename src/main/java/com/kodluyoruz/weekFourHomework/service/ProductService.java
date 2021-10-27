@@ -1,17 +1,15 @@
-package com.kodluyoruz.weekfourjpa.service;
+package com.kodluyoruz.weekFourHomework.service;
 
-import com.kodluyoruz.weekfourjpa.model.dto.ProductDto;
-import com.kodluyoruz.weekfourjpa.model.entity.Product;
-import com.kodluyoruz.weekfourjpa.model.request.CreateUpdateProductRequest;
-import com.kodluyoruz.weekfourjpa.repository.ProductRepository;
+import com.kodluyoruz.weekFourHomework.model.dto.ProductDto;
+import com.kodluyoruz.weekFourHomework.model.entity.Product;
+import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateProductRequest;
+import com.kodluyoruz.weekFourHomework.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static com.kodluyoruz.weekfourjpa.model.mapper.ProductMapper.PRODUCT_MAPPER;
+import static com.kodluyoruz.weekFourHomework.model.mapper.ProductMapper.PRODUCT_MAPPER;
 
 @Service
 @RequiredArgsConstructor

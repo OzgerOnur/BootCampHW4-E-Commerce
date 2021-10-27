@@ -1,10 +1,10 @@
-package com.kodluyoruz.weekfourjpa;
+package com.kodluyoruz.weekFourHomework;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WeekfourjpaApplicationTests {
+class WeekFourHomeworkApplicationTests {
 
     @Test
     void contextLoads() {

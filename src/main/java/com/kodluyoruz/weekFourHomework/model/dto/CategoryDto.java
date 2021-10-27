@@ -1,4 +1,4 @@
-package com.kodluyoruz.weekfourjpa.model.dto;
+package com.kodluyoruz.weekFourHomework.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

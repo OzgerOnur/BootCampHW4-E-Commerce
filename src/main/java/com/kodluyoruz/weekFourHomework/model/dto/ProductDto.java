@@ -1,17 +1,18 @@
-package com.kodluyoruz.weekfourjpa.model.request;
+package com.kodluyoruz.weekFourHomework.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Builder
-public class CreateUpdateProductRequest {
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductDto {
+    private int id;
     private String name;
     private String description;
-    private Double price;
+    private double price;
     private Integer categoryId;
 }

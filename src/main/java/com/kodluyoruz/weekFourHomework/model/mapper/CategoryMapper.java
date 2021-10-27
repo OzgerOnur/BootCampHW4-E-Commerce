@@ -1,13 +1,9 @@
-package com.kodluyoruz.weekfourjpa.model.mapper;
+package com.kodluyoruz.weekFourHomework.model.mapper;
 
-import com.kodluyoruz.weekfourjpa.model.dto.CategoryDto;
-import com.kodluyoruz.weekfourjpa.model.dto.ProductDto;
-import com.kodluyoruz.weekfourjpa.model.entity.Category;
-import com.kodluyoruz.weekfourjpa.model.entity.Product;
-import com.kodluyoruz.weekfourjpa.model.request.CreateUpdateCategoryRequest;
-import com.kodluyoruz.weekfourjpa.model.request.CreateUpdateProductRequest;
+import com.kodluyoruz.weekFourHomework.model.dto.CategoryDto;
+import com.kodluyoruz.weekFourHomework.model.entity.Category;
+import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateCategoryRequest;
 import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;

@@ -1,9 +1,9 @@
-package com.kodluyoruz.weekfourjpa.controller;
+package com.kodluyoruz.weekFourHomework.controller;
 
-import com.kodluyoruz.weekfourjpa.model.dto.CategoryDto;
-import com.kodluyoruz.weekfourjpa.model.dto.ProductDto;
-import com.kodluyoruz.weekfourjpa.model.request.CreateUpdateCategoryRequest;
-import com.kodluyoruz.weekfourjpa.service.CategoryService;
+import com.kodluyoruz.weekFourHomework.model.dto.CategoryDto;
+import com.kodluyoruz.weekFourHomework.model.dto.ProductDto;
+import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateCategoryRequest;
+import com.kodluyoruz.weekFourHomework.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +30,7 @@ public class CategoryController {
         return service.getParentCategory(id);
     }
 
-    @GetMapping("{id}/sub")
+    @GetMapping("{id}/subcategories ")
     public List<CategoryDto> getSubCategory(@PathVariable int id){
         return service.getSubCategory(id);
     }

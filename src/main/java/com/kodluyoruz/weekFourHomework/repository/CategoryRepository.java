@@ -1,6 +1,6 @@
-package com.kodluyoruz.weekfourjpa.repository;
+package com.kodluyoruz.weekFourHomework.repository;
 
-import com.kodluyoruz.weekfourjpa.model.entity.Category;
+import com.kodluyoruz.weekFourHomework.model.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.kodluyoruz.weekfourjpa.model.request;
+package com.kodluyoruz.weekFourHomework.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,10 +1,10 @@
-package com.kodluyoruz.weekfourjpa.model.mapper;
+package com.kodluyoruz.weekFourHomework.model.mapper;
 
-import com.kodluyoruz.weekfourjpa.model.dto.ProductDto;
-import com.kodluyoruz.weekfourjpa.model.entity.Product;
-import com.kodluyoruz.weekfourjpa.model.request.CreateUpdateProductRequest;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
+import com.kodluyoruz.weekFourHomework.model.dto.ProductDto;
+import com.kodluyoruz.weekFourHomework.model.entity.Product;
+import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateProductRequest;
+import org.mapstruct.*;
+import org.mapstruct.control.MappingControl;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -19,5 +19,6 @@ public interface ProductMapper {
 
     Product createProduct(CreateUpdateProductRequest request);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateProduct(@MappingTarget Product product, CreateUpdateProductRequest request);
 }

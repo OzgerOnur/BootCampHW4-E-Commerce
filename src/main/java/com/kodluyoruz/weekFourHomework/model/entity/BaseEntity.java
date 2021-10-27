@@ -1,4 +1,4 @@
-package com.kodluyoruz.weekfourjpa.model.entity;
+package com.kodluyoruz.weekFourHomework.model.entity;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

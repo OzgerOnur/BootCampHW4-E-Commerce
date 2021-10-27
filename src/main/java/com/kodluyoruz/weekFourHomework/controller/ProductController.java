@@ -1,8 +1,8 @@
-package com.kodluyoruz.weekfourjpa.controller;
+package com.kodluyoruz.weekFourHomework.controller;
 
-import com.kodluyoruz.weekfourjpa.model.dto.ProductDto;
-import com.kodluyoruz.weekfourjpa.model.request.CreateUpdateProductRequest;
-import com.kodluyoruz.weekfourjpa.service.ProductService;
+import com.kodluyoruz.weekFourHomework.model.dto.ProductDto;
+import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateProductRequest;
+import com.kodluyoruz.weekFourHomework.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
