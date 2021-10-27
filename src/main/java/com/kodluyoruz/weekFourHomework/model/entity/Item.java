@@ -6,24 +6,31 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
-@Table(name = "baskets")
+@Table(name = "items")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Basket {
-
+public class Item extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,optional = false)
-    private User user;
+    @Column(name = "quantity",nullable = false)
+    private Integer quantity;
 
-    @OneToMany(mappedBy = "basket",fetch = FetchType.LAZY)
-    private List<Item> items;
+    @ManyToOne(optional = false)
+    private Product product;
+
+    @ManyToOne(optional = false)
+    private Basket basket;
+
+
+
+
+
 
 }

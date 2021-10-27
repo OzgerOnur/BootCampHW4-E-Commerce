@@ -1,6 +1,7 @@
 package com.kodluyoruz.weekFourHomework.model.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
@@ -18,11 +20,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     private User user;
 
-    @OneToMany
-    private List<Product> products;
+    @OneToMany(mappedBy = "basket",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Item> items;
 
 
 

@@ -28,16 +28,12 @@ public class User extends BaseEntity {
     @Column(length = 100,nullable = false)
     private String mail;
 
-    @Column(length = 100,nullable = false)
-    private String password;
 
-    @Column()
-    @OneToOne
-    private Basket Basket;
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL,optional = false)
+    private Basket basket;
 
-
-    @OneToMany
-    private List<Order> OrderNos;
+    @OneToMany(mappedBy ="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)//todo Cascase tipleirne bak
+    private List<Order> Orders;
 
 
 

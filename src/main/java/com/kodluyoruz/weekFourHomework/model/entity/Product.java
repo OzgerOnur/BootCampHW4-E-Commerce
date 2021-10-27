@@ -22,34 +22,24 @@ public class Product extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
-    @Size(max = 100)
     @Column(unique = true, length = 100, nullable = false)
     private String name;
 
-    @NotBlank
-    @Size(max = 150)
-    @Column(length = 150, nullable = false)
+    @Column(length = 150)
     private String description;
 
-    @Min(1)
     @Column(nullable = false)
     private Double price;
 
-    @Column(name = "category_id")
-    private Integer categoryId;
+    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Item> items;
+
+// ?? todo category islerini duzelt
+//    @Column(name = "category_id")
+//    private Integer categoryId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false, insertable = false, updatable = false)
     private Category category;
-
-    // devamı benden
-
-    @ManyToMany
-    private List<Basket> baskets;
-
-    @ManyToMany
-    private List<Order> orders;
-
 
 }

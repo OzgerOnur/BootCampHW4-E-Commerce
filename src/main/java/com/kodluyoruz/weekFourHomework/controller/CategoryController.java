@@ -36,7 +36,7 @@ public class CategoryController {
         return service.updateCategory(id, request);
     }
 
-    @GetMapping("{id}/subcategories ")
+    @GetMapping("{id}/subcategories")
     public List<CategoryDto> getSubCategory(@PathVariable int id){
         return service.getSubCategory(id);
     }
