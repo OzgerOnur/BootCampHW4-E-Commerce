@@ -23,7 +23,7 @@ public class Basket {
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,optional = false)
     private User user;
 
-    @OneToMany(mappedBy = "basket",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "basket",fetch = FetchType.LAZY,orphanRemoval = true)
     private List<Item> items;
 
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,13 +24,11 @@ public class User extends BaseEntity {
     private String name;
 
     @Column(length = 100,nullable = false)
-    private String surname;
-
-    @Column(length = 100,nullable = false)
     private String mail;
 
 
-    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL,optional = false)
+
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL,optional = false,orphanRemoval = true)
     private Basket basket;
 
     @OneToMany(mappedBy ="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)//todo Cascase tipleirne bak

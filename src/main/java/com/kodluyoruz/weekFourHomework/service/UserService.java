@@ -2,7 +2,9 @@ package com.kodluyoruz.weekFourHomework.service;
 
 import com.kodluyoruz.weekFourHomework.exceptions.errors.NotFoundException;
 import com.kodluyoruz.weekFourHomework.model.dto.UserDto;
+import com.kodluyoruz.weekFourHomework.model.entity.Basket;
 import com.kodluyoruz.weekFourHomework.model.entity.User;
+import com.kodluyoruz.weekFourHomework.model.mapper.UserMapper;
 import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateUserRequest;
 import com.kodluyoruz.weekFourHomework.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +18,14 @@ import static com.kodluyoruz.weekFourHomework.model.mapper.UserMapper.USER_MAPPE
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
+    //private final UserMapper userMapper;
 
     public UserDto createUser(CreateUpdateUserRequest request) {
         User user = USER_MAPPER.createUser(request);
+
+        Basket basket = Basket.builder().user(user).build();// todo bunu sadelestir
+        user.setBasket(basket);
+
         User createdUser = userRepository.save(user);
         return USER_MAPPER.toUserDto(createdUser);
     }
@@ -43,6 +49,8 @@ public class UserService {
     }
 
     public void deleteUser(int id) {
-        userRepository.deleteById(id);
+        User user = userRepository.getById(id);
+        user.setDeleted(true);
+        userRepository.save(user);
     }
 }

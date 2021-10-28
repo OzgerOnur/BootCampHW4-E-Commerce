@@ -1,18 +1,19 @@
 package com.kodluyoruz.weekFourHomework.model.dto;
 
-import com.kodluyoruz.weekFourHomework.model.entity.Basket;
+import com.kodluyoruz.weekFourHomework.model.entity.Item;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
-    private String name;
-    private String mail;
-    private BasketDto basketDto;
+@Builder
+public class BasketDto {
+    private Integer id;
+    private List<Item> items;
 
 }

@@ -26,11 +26,13 @@ public class UserController {
 
     @GetMapping("{id}")
     public UserDto getUser(@PathVariable int id) {
+
         return service.getUser(id);
     }
 
     @GetMapping
     public List<UserDto> getUsers(@RequestParam(required = false) String name) {
+
         return service.getUsers(name);
     }
 
@@ -42,6 +44,7 @@ public class UserController {
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable int id) {
+
         service.deleteUser(id);
     }
 

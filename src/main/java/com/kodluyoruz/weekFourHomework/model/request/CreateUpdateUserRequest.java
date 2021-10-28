@@ -1,5 +1,6 @@
 package com.kodluyoruz.weekFourHomework.model.request;
 
+import com.kodluyoruz.weekFourHomework.model.entity.Basket;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,8 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CreateUpdateUserRequest {
     private String name;
-    private String surname;
     private String mail;
-    private String password;
 
 }

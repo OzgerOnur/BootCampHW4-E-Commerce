@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.kodluyoruz</groupId>
-    <artifactId>weekfourjpa</artifactId>
+    <artifactId>Homework4</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>weekfourjpa</name>
-    <description>weekfourjpa</description>
+    <name>Homework4</name>
+    <description>Homework4</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
