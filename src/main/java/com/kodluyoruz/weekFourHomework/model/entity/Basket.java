@@ -20,10 +20,14 @@ public class Basket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,optional = false)
+    @Column(name = "user_id")
+    private Integer userId;
+
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)//,optional = false
+    @JoinColumn(name = "user_id",nullable = false,updatable = false, insertable = false)
     private User user;
 
-    @OneToMany(mappedBy = "basket",fetch = FetchType.LAZY,orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "basket",orphanRemoval = true)//mappedBy = "basket",
     private List<Item> items;
 
 }

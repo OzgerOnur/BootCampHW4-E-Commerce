@@ -31,12 +31,12 @@ public class Product extends BaseEntity {
     @Column(nullable = false)
     private Double price;
 
-    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "product",cascade = CascadeType.ALL) //mappedBy = "product",
     private List<Item> items;
 
-// ?? todo category islerini duzelt
-//    @Column(name = "category_id")
-//    private Integer categoryId;
+ //?? todo category islerini duzelt
+    @Column(name = "category_id",nullable = false)
+    private Integer categoryId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false, insertable = false, updatable = false)

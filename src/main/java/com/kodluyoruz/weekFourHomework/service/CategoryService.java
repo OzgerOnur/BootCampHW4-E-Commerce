@@ -22,7 +22,9 @@ public class CategoryService {
 
     public CategoryDto createCategory(CreateUpdateCategoryRequest request) {
         Category category = CATEGORY_MAPPER.createCategory(request);
-        return CATEGORY_MAPPER.toCategoryDto(repository.save(category));
+        Category newCategory = repository.save(category);
+
+        return CATEGORY_MAPPER.toCategoryDto(newCategory);
     }
 
     public List<CategoryDto> getCategories() {

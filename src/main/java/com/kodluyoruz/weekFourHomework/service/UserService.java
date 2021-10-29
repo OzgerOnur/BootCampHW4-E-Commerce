@@ -6,6 +6,7 @@ import com.kodluyoruz.weekFourHomework.model.entity.Basket;
 import com.kodluyoruz.weekFourHomework.model.entity.User;
 import com.kodluyoruz.weekFourHomework.model.mapper.UserMapper;
 import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateUserRequest;
+import com.kodluyoruz.weekFourHomework.repository.BasketRepository;
 import com.kodluyoruz.weekFourHomework.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,15 +19,13 @@ import static com.kodluyoruz.weekFourHomework.model.mapper.UserMapper.USER_MAPPE
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    //private final UserMapper userMapper;
+    private final BasketService basketService;
 
     public UserDto createUser(CreateUpdateUserRequest request) {
         User user = USER_MAPPER.createUser(request);
-
-        Basket basket = Basket.builder().user(user).build();// todo bunu sadelestir
-        user.setBasket(basket);
-
         User createdUser = userRepository.save(user);
+        Basket basket = basketService.createBasket(createdUser.getId());
+        createdUser.setBasket(basket);
         return USER_MAPPER.toUserDto(createdUser);
     }
 

@@ -20,10 +20,14 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @Column(name = "user_id")
+    private Integer userId;
+
+    @ManyToOne(fetch = FetchType.LAZY)//,optional = false
+    @JoinColumn(name = "user_id",updatable = false,insertable = false,nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "basket",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy ="basket",cascade = CascadeType.ALL)//mappedBy ="basket",
     private List<Item> items;
 
 

@@ -14,6 +14,7 @@ import java.util.List;
 @Builder
 public class BasketDto {
     private Integer id;
+    private Integer userId;
     private List<Item> items;
 
 }

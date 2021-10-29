@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 
-@Mapper(uses = {BasketMapper.class})
+@Mapper(componentModel = "spring") //uses = {BasketMapper.class}
 public interface UserMapper {
     UserMapper USER_MAPPER = Mappers.getMapper(UserMapper.class);
 

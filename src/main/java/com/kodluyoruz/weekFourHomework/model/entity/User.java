@@ -28,10 +28,10 @@ public class User extends BaseEntity {
 
 
 
-    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL,optional = false,orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy ="user",orphanRemoval = true)//mappedBy ="user",optional = false,
     private Basket basket;
 
-    @OneToMany(mappedBy ="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)//todo Cascase tipleirne bak
+    @OneToMany(fetch = FetchType.LAZY,mappedBy ="user",cascade = CascadeType.ALL) //mappedBy ="user",
     private List<Order> Orders;
 
 
