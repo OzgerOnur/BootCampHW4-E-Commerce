@@ -17,6 +17,7 @@ public interface UserMapper {
 
     @Mapping(target = "basketId",source = "basket",qualifiedByName = "basketTObasketId")
     UserDto toUserDto(User user);
+
     @Named("basketTObasketId")
     public static Integer basketTObasketId(Basket basket){
         return basket.getId();

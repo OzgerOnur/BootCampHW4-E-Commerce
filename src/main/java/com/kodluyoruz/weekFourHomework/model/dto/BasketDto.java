@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class BasketDto {
-    private Integer basketId;
+    private Integer id;
     private Integer userId;
     private List<ItemDto> items; // todo Item yapınca döngüye giriyor ?
 

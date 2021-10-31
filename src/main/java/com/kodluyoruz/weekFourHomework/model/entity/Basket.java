@@ -27,7 +27,7 @@ public class Basket {
     @JoinColumn(name = "user_id",nullable = false,updatable = false, insertable = false)
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "basket",orphanRemoval = true,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY,orphanRemoval = true,cascade = CascadeType.ALL)//, mappedBy = "basket"
     private List<Item> items;
 
 }
