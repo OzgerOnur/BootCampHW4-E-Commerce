@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -28,10 +29,10 @@ public class User extends BaseEntity {
 
 
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy ="user",orphanRemoval = true)//mappedBy ="user",optional = false,
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy ="user",orphanRemoval = true) //optional = false,
     private Basket basket;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy ="user",cascade = CascadeType.ALL) //mappedBy ="user",
+    @OneToMany(fetch = FetchType.LAZY,mappedBy ="user",cascade = CascadeType.ALL)
     private List<Order> Orders;
 
 

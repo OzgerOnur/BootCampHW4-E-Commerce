@@ -31,10 +31,10 @@ public class Product extends BaseEntity {
     @Column(nullable = false)
     private Double price;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "product",cascade = CascadeType.ALL) //mappedBy = "product",
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "product",cascade = CascadeType.ALL)
     private List<Item> items;
 
- //?? todo category islerini duzelt
+
     @Column(name = "category_id",nullable = false)
     private Integer categoryId;
 

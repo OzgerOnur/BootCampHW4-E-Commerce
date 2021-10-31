@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDto {
+public class ItemDto {
     private Integer id;
-    private String name;
-    private Integer parentId;
-//    private CategoryDto parentCategory;
+    private Integer quantity;
+    private Integer productId;
 }

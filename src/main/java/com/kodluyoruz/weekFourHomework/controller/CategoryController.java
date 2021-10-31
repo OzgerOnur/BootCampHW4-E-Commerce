@@ -3,9 +3,9 @@ package com.kodluyoruz.weekFourHomework.controller;
 import com.kodluyoruz.weekFourHomework.model.dto.CategoryDto;
 import com.kodluyoruz.weekFourHomework.model.dto.ProductDto;
 import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateCategoryRequest;
-import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateProductRequest;
 import com.kodluyoruz.weekFourHomework.service.CategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +17,7 @@ public class CategoryController {
     private final CategoryService service;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public CategoryDto createCategory(@RequestBody CreateUpdateCategoryRequest request){
         return service.createCategory(request);
     }
@@ -44,5 +45,11 @@ public class CategoryController {
     @GetMapping("{id}/products")
     public List<ProductDto> getCategoryProducts(@PathVariable int id) {
         return service.getCategoryProducts(id);
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCategory(@PathVariable int id){
+        service.deleteCategory(id);
     }
 }

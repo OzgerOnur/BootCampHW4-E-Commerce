@@ -23,11 +23,11 @@ public class Basket {
     @Column(name = "user_id")
     private Integer userId;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)//,optional = false
+    @OneToOne(fetch = FetchType.LAZY)//,optional = false
     @JoinColumn(name = "user_id",nullable = false,updatable = false, insertable = false)
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "basket",orphanRemoval = true)//mappedBy = "basket",
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "basket",orphanRemoval = true,cascade = CascadeType.ALL)
     private List<Item> items;
 
 }

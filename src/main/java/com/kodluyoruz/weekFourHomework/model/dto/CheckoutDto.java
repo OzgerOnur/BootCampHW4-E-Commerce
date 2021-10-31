@@ -9,12 +9,13 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class BasketDto {
+public class CheckoutDto {
     private Integer basketId;
     private Integer userId;
-    private List<ItemDto> items; // todo Item yapınca döngüye giriyor ?
+    private List<ItemDto> items;
+    private Double price;
 
 }

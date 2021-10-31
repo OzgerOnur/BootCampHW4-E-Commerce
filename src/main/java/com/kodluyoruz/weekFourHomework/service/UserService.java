@@ -29,9 +29,14 @@ public class UserService {
         return USER_MAPPER.toUserDto(createdUser);
     }
 
+    protected User getUserEntity(int id){
+        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+
+    }
+
 
     public UserDto getUser(int id) {
-        User user = userRepository.getById(id);
+        User user = getUserEntity(id);
         return USER_MAPPER.toUserDto(user);
     }
 
@@ -51,5 +56,11 @@ public class UserService {
         User user = userRepository.getById(id);
         user.setDeleted(true);
         userRepository.save(user);
+    }
+
+    public void updateUserEntity(User user) {
+        userRepository.findById(user.getId()).orElseThrow(() -> new NotFoundException());
+        userRepository.save(user);
+
     }
 }

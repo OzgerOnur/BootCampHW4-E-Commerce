@@ -58,4 +58,8 @@ public class CategoryService {
     private Category getCategoryEntity(int id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundException());
     }
+
+    public void deleteCategory(int id) {
+        repository.deleteById(id);
+    }
 }

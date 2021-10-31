@@ -27,7 +27,7 @@ public class Order {
     @JoinColumn(name = "user_id",updatable = false,insertable = false,nullable = false)
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy ="basket",cascade = CascadeType.ALL)//mappedBy ="basket",
+    @OneToMany(fetch = FetchType.LAZY,mappedBy ="basket",cascade = CascadeType.ALL)
     private List<Item> items;
 
 

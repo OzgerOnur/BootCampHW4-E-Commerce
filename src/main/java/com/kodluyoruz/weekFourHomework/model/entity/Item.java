@@ -22,13 +22,17 @@ public class Item extends BaseEntity{
     @Column(name = "quantity",nullable = false)
     private Integer quantity;
 
-    @ManyToOne(optional = false)
+    @Column(name = "product_id")
+    private Integer productId;
+
+    @ManyToOne()
+    @JoinColumn(name = "product_id",nullable = false,updatable = false,insertable = false)
     private Product product;
 
     @Column(name = "basket_id")
     private Integer basketId;
 
-    @ManyToOne(optional = false)
+    @ManyToOne()// optional = false
     @JoinColumn(name = "basket_id",nullable = false,updatable = false,insertable = false)
     private Basket basket;
 

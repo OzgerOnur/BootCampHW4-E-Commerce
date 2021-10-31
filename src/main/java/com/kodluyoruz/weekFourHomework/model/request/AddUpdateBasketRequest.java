@@ -1,20 +1,23 @@
-package com.kodluyoruz.weekFourHomework.model.dto;
+package com.kodluyoruz.weekFourHomework.model.request;
 
+import com.kodluyoruz.weekFourHomework.model.entity.Basket;
 import com.kodluyoruz.weekFourHomework.model.entity.Item;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class BasketDto {
-    private Integer basketId;
+public class AddUpdateBasketRequest {
+
     private Integer userId;
-    private List<ItemDto> items; // todo Item yapınca döngüye giriyor ?
+    private List<ItemRequest> items;
+
 
 }

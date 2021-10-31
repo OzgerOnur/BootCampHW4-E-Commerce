@@ -1,5 +1,6 @@
 package com.kodluyoruz.weekFourHomework.service;
 
+import com.kodluyoruz.weekFourHomework.exceptions.errors.NotFoundException;
 import com.kodluyoruz.weekFourHomework.model.dto.ProductDto;
 import com.kodluyoruz.weekFourHomework.model.entity.Product;
 import com.kodluyoruz.weekFourHomework.model.request.CreateUpdateProductRequest;
@@ -31,7 +32,7 @@ public class ProductService {
     }
 
     private Product getProductEntity(int id) {
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("not found"));
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Product Not Found"));
     }
 
     public ProductDto updateProduct(int id, CreateUpdateProductRequest request) {
@@ -52,5 +53,9 @@ public class ProductService {
 
     public void deleteProduct(int id) {
         repository.deleteById(id);
+    }
+
+    public Boolean checkProduct(int id){
+        return repository.findById(id).isPresent();
     }
 }
