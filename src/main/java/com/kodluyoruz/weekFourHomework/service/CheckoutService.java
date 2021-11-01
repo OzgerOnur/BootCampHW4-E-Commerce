@@ -44,14 +44,14 @@ public class CheckoutService {
 
     public OrderDto pay(CheckoutRequest checkoutRequest) throws UnsuccessfulProcces {
         Basket basket = userService.getUserEntity(checkoutRequest.getUserId()).getBasket();
+        if (basket.getBasketItems().isEmpty())
+            throw new UnsuccessfulProcces("Empty Basket");
         CheckoutDto checkoutDto = getCheckoutDto(basket);
 
         Order order;
         if (payservice(checkoutDto)){
-            order = orderService.createOrder(basket);  // todo bu kısma bakk
+            order = orderService.createOrder(basket);
             basketService.removeAllBasketItem(basket.getUserId());
-
-
         }
         else {
             throw (new UnsuccessfulProcces());

@@ -73,7 +73,7 @@ public class BasketService {
     private void basketRequestValid(AddUpdateBasketRequest request) {
         basketRepository.findByUserIdEquals(
                 request.getUserId()).orElseThrow(() -> new NotFoundException("User not found"));
-        isProductsExist(request.getItems().stream()
+        isProductsExist(request.getBasketItems().stream()
                 .map(item -> item.getProductId())
                 .collect(Collectors.toList()));
     }

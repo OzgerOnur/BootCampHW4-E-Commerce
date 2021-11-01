@@ -14,7 +14,7 @@ import java.util.List;
 public class CheckoutDto {
     private Integer Id;
     private Integer userId;
-    private List<BasketItemDto> items;
+    private List<BasketItemDto> basketItems;
     private Double price;
 
 }
