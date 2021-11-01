@@ -1,6 +1,6 @@
 package com.kodluyoruz.weekFourHomework.exceptions.errors;
 
-public class UnsuccessfulProcces extends Throwable {
+public class UnsuccessfulProcces extends RuntimeException {
 
     public UnsuccessfulProcces(){
         super();

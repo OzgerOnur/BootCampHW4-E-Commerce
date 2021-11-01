@@ -14,7 +14,7 @@ import java.util.List;
 public class AddUpdateBasketRequest {
 
     private Integer userId;
-    private List<BasketItemRequest> items;
+    private List<BasketItemRequest> basketItems;
 
 
 }

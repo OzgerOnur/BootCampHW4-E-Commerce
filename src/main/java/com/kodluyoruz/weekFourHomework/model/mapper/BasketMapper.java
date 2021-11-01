@@ -18,6 +18,7 @@ public interface BasketMapper {
 
     Basket requestToBasket(AddUpdateBasketRequest request);
 
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateBasket(@MappingTarget Basket basket,AddUpdateBasketRequest request);
 
