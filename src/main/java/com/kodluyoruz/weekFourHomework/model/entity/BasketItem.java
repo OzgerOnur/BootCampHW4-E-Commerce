@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "items")
+@Table(name = "basket_items")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item extends BaseEntity{
+public class BasketItem extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

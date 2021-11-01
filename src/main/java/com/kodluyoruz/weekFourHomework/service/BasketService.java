@@ -4,15 +4,13 @@ package com.kodluyoruz.weekFourHomework.service;
 import com.kodluyoruz.weekFourHomework.exceptions.errors.NotFoundException;
 import com.kodluyoruz.weekFourHomework.model.dto.BasketDto;
 import com.kodluyoruz.weekFourHomework.model.entity.Basket;
-import com.kodluyoruz.weekFourHomework.model.entity.Item;
-import com.kodluyoruz.weekFourHomework.model.entity.Product;
+import com.kodluyoruz.weekFourHomework.model.entity.BasketItem;
 import com.kodluyoruz.weekFourHomework.model.request.AddUpdateBasketRequest;
 import com.kodluyoruz.weekFourHomework.repository.BasketRepository;
 import com.kodluyoruz.weekFourHomework.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -46,7 +44,7 @@ public class BasketService {
         Basket basketDb =  basketRepository.findByUserIdEquals(userId).orElseThrow(
                 () -> new NotFoundException("user ID not found")
         );
-        basketDb.getItems().clear();
+        basketDb.getBasketItems().clear();
         return basketRepository.save(basketDb);
     }
 
@@ -54,9 +52,9 @@ public class BasketService {
         basketRequestValid(addUpdateBasketRequest);
         Basket basketAddRequest = BASKET_MAPPER.requestToBasket(addUpdateBasketRequest);
         Basket basketDb = basketRepository.findByUserIdEquals(addUpdateBasketRequest.getUserId()).get();
-        basketDb.getItems().clear();
-        basketDb.getItems().addAll(basketAddRequest.getItems()); //setItems(basketAddRequest.getItems());
-        basketDb.getItems().stream().forEach(item ->item.setBasketId(basketDb.getId()) );
+        basketDb.getBasketItems().clear();
+        basketDb.getBasketItems().addAll(basketAddRequest.getBasketItems()); //setItems(basketAddRequest.getItems());
+        basketDb.getBasketItems().stream().forEach(item ->item.setBasketId(basketDb.getId()) );
         return BASKET_MAPPER.basketToBasketDto(basketRepository.save(basketDb));
 
     }
@@ -86,15 +84,15 @@ public class BasketService {
         Basket basketAddRequest = BASKET_MAPPER.requestToBasket(addRequest);
         Basket basketDb = basketRepository.findByUserIdEquals(addRequest.getUserId()).get();
 
-        for (Item itemRequest:basketAddRequest.getItems()){
-            Optional<Item> isItemEqual =basketDb.getItems().stream()
-                    .filter(item -> item.getProductId() == itemRequest.getProductId())
+        for (BasketItem basketItemRequest :basketAddRequest.getBasketItems()){
+            Optional<BasketItem> isItemEqual =basketDb.getBasketItems().stream()
+                    .filter(item -> item.getProductId() == basketItemRequest.getProductId())
                     .findFirst();
             if (isItemEqual.isPresent()) {
-                isItemEqual.get().setQuantity(isItemEqual.get().getQuantity() + itemRequest.getQuantity());
+                isItemEqual.get().setQuantity(isItemEqual.get().getQuantity() + basketItemRequest.getQuantity());
             }else{
-                itemRequest.setBasketId(basketDb.getId());
-                basketDb.getItems().add(itemRequest);
+                basketItemRequest.setBasketId(basketDb.getId());
+                basketDb.getBasketItems().add(basketItemRequest);
             }
         }
         return BASKET_MAPPER.basketToBasketDto(basketRepository.save(basketDb));
@@ -104,13 +102,13 @@ public class BasketService {
         basketRequestValid(removeRequest);
         Basket basketRemoveRequest = BASKET_MAPPER.requestToBasket(removeRequest);
         Basket basketDb = basketRepository.findByUserIdEquals(removeRequest.getUserId()).get();
-        for (Item itemRequest:basketRemoveRequest.getItems()) {
-            Optional<Item > isQuantitylessZero = basketDb.getItems().stream()
-                    .filter(item -> item.getProductId() == itemRequest.getProductId() )
-                    .peek(item -> item.setQuantity(item.getQuantity() - itemRequest.getQuantity()))
+        for (BasketItem basketItemRequest :basketRemoveRequest.getBasketItems()) {
+            Optional<BasketItem> isQuantitylessZero = basketDb.getBasketItems().stream()
+                    .filter(item -> item.getProductId() == basketItemRequest.getProductId() )
+                    .peek(item -> item.setQuantity(item.getQuantity() - basketItemRequest.getQuantity()))
                     .filter(item -> item.getQuantity() <= 0)
                     .findFirst();//basketDb.getItems().remove(item)
-            isQuantitylessZero.ifPresent(item -> basketDb.getItems().remove(item));
+            isQuantitylessZero.ifPresent(item -> basketDb.getBasketItems().remove(item));
 
         }
         return BASKET_MAPPER.basketToBasketDto(basketRepository.save(basketDb));

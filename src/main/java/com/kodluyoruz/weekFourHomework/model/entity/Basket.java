@@ -1,19 +1,18 @@
 package com.kodluyoruz.weekFourHomework.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "baskets")
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Basket {
+public class Basket extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +26,6 @@ public class Basket {
     private User user;
 
     @OneToMany(fetch = FetchType.LAZY,orphanRemoval = true,cascade = CascadeType.ALL)//, mappedBy = "basket"
-    private List<Item> items;
+    private List<BasketItem> basketItems;
 
 }

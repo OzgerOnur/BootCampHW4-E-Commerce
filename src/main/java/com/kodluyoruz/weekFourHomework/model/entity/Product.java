@@ -6,9 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -32,7 +29,7 @@ public class Product extends BaseEntity {
     private Double price;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)//mappedBy = "product",
-    private List<Item> items;
+    private List<BasketItem> basketItems;
 
 
     @Column(name = "category_id")//,nullable = false

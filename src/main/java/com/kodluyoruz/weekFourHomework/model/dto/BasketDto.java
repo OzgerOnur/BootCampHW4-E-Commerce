@@ -1,6 +1,5 @@
 package com.kodluyoruz.weekFourHomework.model.dto;
 
-import com.kodluyoruz.weekFourHomework.model.entity.Item;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +14,6 @@ import java.util.List;
 public class BasketDto {
     private Integer id;
     private Integer userId;
-    private List<ItemDto> items; // todo Item yapınca döngüye giriyor ?
+    private List<BasketItemDto> items; // todo Item yapınca döngüye giriyor ?
 
 }

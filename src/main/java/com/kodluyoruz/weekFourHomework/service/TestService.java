@@ -7,8 +7,6 @@ import com.kodluyoruz.weekFourHomework.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -27,10 +25,10 @@ public class TestService {
 //        User user = basket.getUser();
 
         basket = basketRepository.findByUserIdEquals(id).get();
-       List<Item> items = basket.getItems();
-        basket.getItems().clear();
+       List<BasketItem> basketItems = basket.getBasketItems();
+        basket.getBasketItems().clear();
 
-        basket.getItems().add(Item.builder().quantity(1955).productId(2).build());
+        basket.getBasketItems().add(BasketItem.builder().quantity(1955).productId(2).build());
 
        // basket.getItems().remove(0);
         //basket.setItems(null);

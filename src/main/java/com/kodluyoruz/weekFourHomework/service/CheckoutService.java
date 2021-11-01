@@ -4,9 +4,8 @@ import com.kodluyoruz.weekFourHomework.exceptions.errors.UnsuccessfulProcces;
 import com.kodluyoruz.weekFourHomework.model.dto.CheckoutDto;
 import com.kodluyoruz.weekFourHomework.model.dto.OrderDto;
 import com.kodluyoruz.weekFourHomework.model.entity.Basket;
-import com.kodluyoruz.weekFourHomework.model.entity.Item;
+import com.kodluyoruz.weekFourHomework.model.entity.BasketItem;
 import com.kodluyoruz.weekFourHomework.model.entity.Order;
-import com.kodluyoruz.weekFourHomework.model.entity.User;
 import com.kodluyoruz.weekFourHomework.model.request.CheckoutRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,8 +36,8 @@ public class CheckoutService {
 
     private double calculatePriceAndDiscounts(Basket basket){
         double total = 0;
-        for (Item item: basket.getItems()) {
-            total += (double)item.getQuantity() * item.getProduct().getPrice();
+        for (BasketItem basketItem : basket.getBasketItems()) {
+            total += (double) basketItem.getQuantity() * basketItem.getProduct().getPrice();
         }
         return total;
     }
@@ -58,7 +57,7 @@ public class CheckoutService {
             throw (new UnsuccessfulProcces());
         }
 
-        return ORDER_MAPPER.orderToOrderDto(order);
+        return ORDER_MAPPER.orderToOrderDto(order); // todo bunda da bak order dto o
     }
 
     public boolean payservice(CheckoutDto checkoutDto){

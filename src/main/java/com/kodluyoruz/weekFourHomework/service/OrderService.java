@@ -13,11 +13,14 @@ import static com.kodluyoruz.weekFourHomework.model.mapper.OrderMapper.ORDER_MAP
 public class OrderService {
     private final OrderRepository orderRepository;
 
-
     public Order createOrder(Basket basket) {
         Order order = ORDER_MAPPER.basketToOrder(basket);
+        // BASKETLER için ayrı Orderlar için ayrı tablo tutalım
+        // enginin videolar bak bari son
         return orderRepository.save(order);
     }
+
+
 
 
 

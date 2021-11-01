@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemDto {
+public class BasketItemDto {
     private Integer id;
     private Integer quantity;
     private Integer productId;
+
 }

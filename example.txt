@@ -20,8 +20,8 @@ p -> user: created product 1
 user -> u: create user
 u -> db: create user 1
 u -> user: created user 1
-user -> b: add item 1 to user 1 basket
-b -> db: add item 1 to user 1 basket
+user -> b: add basketItem 1 to user 1 basket
+b -> db: add basketItem 1 to user 1 basket
 b -> user: return basket info
 user -> ch: get checkout for user 1
 ch -> db: get basket

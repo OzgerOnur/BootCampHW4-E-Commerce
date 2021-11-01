@@ -13,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ItemRequest {
+public class BasketItemRequest {
     private Integer quantity;
     private Integer productId;
 
