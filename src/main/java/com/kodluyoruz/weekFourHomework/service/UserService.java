@@ -58,9 +58,4 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUserEntity(User user) {
-        userRepository.findById(user.getId()).orElseThrow(() -> new NotFoundException());
-        userRepository.save(user);
-
-    }
 }

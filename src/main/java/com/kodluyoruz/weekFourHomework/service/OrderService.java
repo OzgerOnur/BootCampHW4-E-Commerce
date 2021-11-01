@@ -1,6 +1,6 @@
 package com.kodluyoruz.weekFourHomework.service;
 
-import com.kodluyoruz.weekFourHomework.model.Bill;
+import com.kodluyoruz.weekFourHomework.model.entity.Basket;
 import com.kodluyoruz.weekFourHomework.model.entity.Order;
 import com.kodluyoruz.weekFourHomework.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +14,8 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
 
-    public Order createOrder(Bill bill) {
-        Order order = ORDER_MAPPER.billToOrder(bill);
+    public Order createOrder(Basket basket) {
+        Order order = ORDER_MAPPER.basketToOrder(basket);
         return orderRepository.save(order);
     }
 

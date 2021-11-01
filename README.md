@@ -25,7 +25,7 @@ Only 1 basket should active for a user without checkout completed.
 
 ## Checkout Controller
 Checkout should be related with user.  
-User can have active basket bill at checkout. 
+User can have active basket checkout at checkout. 
 User can complete basket and should create an order based on the basket.
 
 ## Order Controller

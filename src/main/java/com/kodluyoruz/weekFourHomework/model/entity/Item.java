@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Table(name = "items")
@@ -35,10 +34,5 @@ public class Item extends BaseEntity{
     @ManyToOne()// optional = false
     @JoinColumn(name = "basket_id",nullable = false,updatable = false,insertable = false)
     private Basket basket;
-
-
-
-
-
 
 }

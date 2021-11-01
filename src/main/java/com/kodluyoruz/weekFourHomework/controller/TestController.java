@@ -2,6 +2,7 @@ package com.kodluyoruz.weekFourHomework.controller;
 
 import com.kodluyoruz.weekFourHomework.model.entity.Basket;
 import com.kodluyoruz.weekFourHomework.model.entity.Category;
+import com.kodluyoruz.weekFourHomework.model.entity.Product;
 import com.kodluyoruz.weekFourHomework.service.BasketService;
 import com.kodluyoruz.weekFourHomework.service.TestService;
 import lombok.RequiredArgsConstructor;
@@ -21,11 +22,11 @@ public class TestController {
 
 
     @PostMapping
-    public Category testMet(@RequestParam Integer i){
+    public Product testMet(@RequestParam Integer i){
 
-        return  null;
+
                 //testService.test(i);
-
+        return testService.testPro(i);
 
     }
 

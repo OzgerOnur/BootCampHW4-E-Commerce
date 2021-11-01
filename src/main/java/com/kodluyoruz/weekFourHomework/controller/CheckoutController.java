@@ -2,6 +2,7 @@ package com.kodluyoruz.weekFourHomework.controller;
 
 import com.kodluyoruz.weekFourHomework.exceptions.errors.UnsuccessfulProcces;
 import com.kodluyoruz.weekFourHomework.model.dto.CheckoutDto;
+import com.kodluyoruz.weekFourHomework.model.dto.OrderDto;
 import com.kodluyoruz.weekFourHomework.model.entity.Order;
 import com.kodluyoruz.weekFourHomework.model.request.CheckoutRequest;
 import com.kodluyoruz.weekFourHomework.service.CheckoutService;
@@ -24,7 +25,7 @@ public class CheckoutController {
     }
 
     @PostMapping("pay")
-    public Order payBasket(@RequestBody CheckoutRequest checkoutRequest) throws UnsuccessfulProcces {
+    public OrderDto payBasket(@RequestBody CheckoutRequest checkoutRequest) throws UnsuccessfulProcces {
         return checkoutService.pay(checkoutRequest);
 
     }

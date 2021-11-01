@@ -1,18 +1,23 @@
 package com.kodluyoruz.weekFourHomework.service;
 
-import com.kodluyoruz.weekFourHomework.model.entity.Basket;
-import com.kodluyoruz.weekFourHomework.model.entity.Item;
-import com.kodluyoruz.weekFourHomework.model.entity.User;
+import com.kodluyoruz.weekFourHomework.model.entity.*;
 import com.kodluyoruz.weekFourHomework.repository.BasketRepository;
+import com.kodluyoruz.weekFourHomework.repository.CategoryRepository;
+import com.kodluyoruz.weekFourHomework.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class TestService {
     private final BasketRepository basketRepository;
+    private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
+
     int num = 3000;
     public Basket test(Integer id){
         Basket basket;
@@ -29,7 +34,7 @@ public class TestService {
 
        // basket.getItems().remove(0);
         //basket.setItems(null);
-       basketRepository.save(basket);
+//       basketRepository.save(basket);
 
 
 //        Item addItem = Item.builder().productId(2).quantity(num).build();
@@ -74,6 +79,27 @@ public class TestService {
 
 
         return null;
+    }
+
+    public Product testPro(Integer id){
+//        Product product =  productRepository.getById(id);
+//        Category category = product.getCategory();
+//        String str = category.getName();
+
+//        Category category =  categoryRepository.getById(id);
+//        List<Product> products  =  category.getProducts();
+//        String str1 = category.getName();
+//        String str2 = products.get(0).getName();
+        Category newCat3 = categoryRepository.findById(23).get();
+        Category category = new Category(null,"catEkledim", null,null,null,null);
+        Category newCat1 = categoryRepository.save(category);
+        newCat3 = categoryRepository.findById(newCat1.getId()).get();
+        Product product = new Product(null,"benEkledimPro","disccrt",9.9,null, 1, null);
+        newCat1.getProducts().add(product);
+        Category newCat2 = categoryRepository.save(newCat1);
+
+        return null;
+
     }
 
 

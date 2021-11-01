@@ -1,8 +1,8 @@
 package com.kodluyoruz.weekFourHomework.service;
 
 import com.kodluyoruz.weekFourHomework.exceptions.errors.UnsuccessfulProcces;
-import com.kodluyoruz.weekFourHomework.model.Bill;
 import com.kodluyoruz.weekFourHomework.model.dto.CheckoutDto;
+import com.kodluyoruz.weekFourHomework.model.dto.OrderDto;
 import com.kodluyoruz.weekFourHomework.model.entity.Basket;
 import com.kodluyoruz.weekFourHomework.model.entity.Item;
 import com.kodluyoruz.weekFourHomework.model.entity.Order;
@@ -12,26 +12,28 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import static com.kodluyoruz.weekFourHomework.model.mapper.CheckoutMapper.CHECKOUT_MAPPER;
+import static com.kodluyoruz.weekFourHomework.model.mapper.OrderMapper.ORDER_MAPPER;
 
 @Service
 @RequiredArgsConstructor
 public class CheckoutService {
     private final UserService userService;
     private final OrderService orderService;
+    private final BasketService basketService;
 
 
     public CheckoutDto checkoutBasket(CheckoutRequest checkoutRequest) {
-        Bill bill = createBill(checkoutRequest);
-        CheckoutDto checkoutDto = CHECKOUT_MAPPER.billToCheckoutDto(bill);
+        Basket basket = userService.getUserEntity(checkoutRequest.getUserId()).getBasket();
+        CheckoutDto checkoutDto = getCheckoutDto(basket);
         return checkoutDto;
     }
 
-    private Bill createBill(CheckoutRequest checkoutRequest) {
-        User user = userService.getUserEntity(checkoutRequest.getUserId());
-        Bill bill = CHECKOUT_MAPPER.BasketToBill(user.getBasket());
-        bill.setPrice(calculatePriceAndDiscounts(user.getBasket()));
-        return bill;
+    private CheckoutDto getCheckoutDto(Basket basket) {
+        Double totalPrice = calculatePriceAndDiscounts(basket);
+        CheckoutDto checkoutDto = CHECKOUT_MAPPER.basketToCheckout(basket,totalPrice);
+        return checkoutDto;
     }
+
 
     private double calculatePriceAndDiscounts(Basket basket){
         double total = 0;
@@ -41,22 +43,25 @@ public class CheckoutService {
         return total;
     }
 
-    public Order pay(CheckoutRequest checkoutRequest) throws UnsuccessfulProcces {
-        Bill bill = createBill(checkoutRequest);
+    public OrderDto pay(CheckoutRequest checkoutRequest) throws UnsuccessfulProcces {
+        Basket basket = userService.getUserEntity(checkoutRequest.getUserId()).getBasket();
+        CheckoutDto checkoutDto = getCheckoutDto(basket);
+
         Order order;
-        if (payservice(bill)){
-            order = orderService.createOrder(bill);
-            User user = userService.getUserEntity(bill.getUserId());
-            user.getBasket().setItems(null);
-            userService.updateUserEntity(user);
+        if (payservice(checkoutDto)){
+            order = orderService.createOrder(basket);  // todo bu kısma bakk
+            basketService.removeAllBasketItem(basket.getUserId());
+
+
         }
         else {
             throw (new UnsuccessfulProcces());
         }
-        return order;
+
+        return ORDER_MAPPER.orderToOrderDto(order);
     }
 
-    public boolean payservice(Bill bill){
+    public boolean payservice(CheckoutDto checkoutDto){
         return true;
     }
 }

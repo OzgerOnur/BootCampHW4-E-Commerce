@@ -38,8 +38,7 @@ public class CategoryService {
 
     public List<ProductDto> getCategoryProducts(int id) {
         Category category = repository.findById(id).orElseThrow(() -> new NotFoundException());
-
-        return PRODUCT_MAPPER.toProductDtoList(category.getProductList());
+        return PRODUCT_MAPPER.toProductDtoList(category.getProducts());
     }
 
     public List<CategoryDto> getSubCategory(int id) {

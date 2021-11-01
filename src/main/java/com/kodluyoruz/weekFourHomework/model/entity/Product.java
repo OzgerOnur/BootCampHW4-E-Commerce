@@ -35,7 +35,7 @@ public class Product extends BaseEntity {
     private List<Item> items;
 
 
-    @Column(name = "category_id",nullable = false)
+    @Column(name = "category_id")//,nullable = false
     private Integer categoryId;
 
     @ManyToOne(fetch = FetchType.LAZY)

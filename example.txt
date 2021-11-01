@@ -23,9 +23,9 @@ u -> user: created user 1
 user -> b: add item 1 to user 1 basket
 b -> db: add item 1 to user 1 basket
 b -> user: return basket info
-user -> ch: get bill for user 1
+user -> ch: get checkout for user 1
 ch -> db: get basket
-ch -> user: return bill based on basket
+ch -> user: return checkout based on basket
 user -> ch: complete checkout for user 1
 ch -> db: create order based on basket for user 1 and flag that basket
 ch -> user: return order info
