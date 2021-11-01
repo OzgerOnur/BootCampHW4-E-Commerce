@@ -42,6 +42,14 @@ public class BasketService {
         );
     }
 
+    protected Basket removeAllBasketItem(Integer userId) {
+        Basket basketDb =  basketRepository.findByUserIdEquals(userId).orElseThrow(
+                () -> new NotFoundException("user ID not found")
+        );
+        basketDb.getItems().clear();
+        return basketRepository.save(basketDb);
+    }
+
     public BasketDto putBasket(AddUpdateBasketRequest addUpdateBasketRequest) {
         basketRequestValid(addUpdateBasketRequest);
         Basket basketAddRequest = BASKET_MAPPER.requestToBasket(addUpdateBasketRequest);
@@ -70,9 +78,6 @@ public class BasketService {
         isProductsExist(request.getItems().stream()
                 .map(item -> item.getProductId())
                 .collect(Collectors.toList()));
-
-
-
     }
 
 
