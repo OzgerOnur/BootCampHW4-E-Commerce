@@ -57,7 +57,7 @@ public class CheckoutService {
             throw (new UnsuccessfulProcces());
         }
 
-        return ORDER_MAPPER.orderToOrderDto(order); // todo bunda da bak order dto o
+        return ORDER_MAPPER.orderToOrderDto(order);
     }
 
     public boolean payservice(CheckoutDto checkoutDto){

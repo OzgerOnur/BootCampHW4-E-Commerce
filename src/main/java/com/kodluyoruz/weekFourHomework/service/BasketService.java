@@ -48,10 +48,10 @@ public class BasketService {
         return basketRepository.save(basketDb);
     }
 
-    public BasketDto putBasket(AddUpdateBasketRequest addUpdateBasketRequest) {
-        basketRequestValid(addUpdateBasketRequest);
-        Basket basketAddRequest = BASKET_MAPPER.requestToBasket(addUpdateBasketRequest);
-        Basket basketDb = basketRepository.findByUserIdEquals(addUpdateBasketRequest.getUserId()).get();
+    public BasketDto putBasket(Integer userId,AddUpdateBasketRequest addUpdateBasketRequest) {
+        basketRequestValid(userId,addUpdateBasketRequest);
+        Basket basketAddRequest = BASKET_MAPPER.requestToBasket(userId,addUpdateBasketRequest);
+        Basket basketDb = basketRepository.findByUserIdEquals(userId).get();
         basketDb.getBasketItems().clear();
         basketDb.getBasketItems().addAll(basketAddRequest.getBasketItems()); //setItems(basketAddRequest.getItems());
         basketDb.getBasketItems().stream().forEach(item ->item.setBasketId(basketDb.getId()) );
@@ -70,19 +70,19 @@ public class BasketService {
 
     }
 
-    private void basketRequestValid(AddUpdateBasketRequest request) {
-        basketRepository.findByUserIdEquals(
-                request.getUserId()).orElseThrow(() -> new NotFoundException("User not found"));
+    private void basketRequestValid(Integer userId, AddUpdateBasketRequest request) {
+        basketRepository.findByUserIdEquals(userId)
+                .orElseThrow(() -> new NotFoundException("User not found"));
         isProductsExist(request.getBasketItems().stream()
                 .map(item -> item.getProductId())
                 .collect(Collectors.toList()));
     }
 
 
-    public BasketDto addBasket(AddUpdateBasketRequest addRequest){
-        basketRequestValid(addRequest);
-        Basket basketAddRequest = BASKET_MAPPER.requestToBasket(addRequest);
-        Basket basketDb = basketRepository.findByUserIdEquals(addRequest.getUserId()).get();
+    public BasketDto addBasket(Integer userId,AddUpdateBasketRequest addRequest){
+        basketRequestValid(userId,addRequest);
+        Basket basketAddRequest = BASKET_MAPPER.requestToBasket(userId,addRequest);
+        Basket basketDb = basketRepository.findByUserIdEquals(userId).get();
 
         for (BasketItem basketItemRequest :basketAddRequest.getBasketItems()){
             Optional<BasketItem> isItemEqual =basketDb.getBasketItems().stream()
@@ -98,16 +98,16 @@ public class BasketService {
         return BASKET_MAPPER.basketToBasketDto(basketRepository.save(basketDb));
     }
 
-    public BasketDto removeItemFromBasket(AddUpdateBasketRequest removeRequest){
-        basketRequestValid(removeRequest);
-        Basket basketRemoveRequest = BASKET_MAPPER.requestToBasket(removeRequest);
-        Basket basketDb = basketRepository.findByUserIdEquals(removeRequest.getUserId()).get();
+    public BasketDto removeItemFromBasket(Integer userId,AddUpdateBasketRequest removeRequest){
+        basketRequestValid(userId,removeRequest);
+        Basket basketRemoveRequest = BASKET_MAPPER.requestToBasket(userId,removeRequest);
+        Basket basketDb = basketRepository.findByUserIdEquals(userId).get();
         for (BasketItem basketItemRequest :basketRemoveRequest.getBasketItems()) {
             Optional<BasketItem> isQuantitylessZero = basketDb.getBasketItems().stream()
                     .filter(item -> item.getProductId() == basketItemRequest.getProductId() )
                     .peek(item -> item.setQuantity(item.getQuantity() - basketItemRequest.getQuantity()))
                     .filter(item -> item.getQuantity() <= 0)
-                    .findFirst();//basketDb.getItems().remove(item)
+                    .findFirst();
             isQuantitylessZero.ifPresent(item -> basketDb.getBasketItems().remove(item));
 
         }

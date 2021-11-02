@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public UserDto createUser(@RequestBody CreateUpdateUserRequest request) {
+    public UserDto createUser(@Valid @RequestBody CreateUpdateUserRequest request) {
         return service.createUser(request);
     }
 
@@ -37,7 +38,7 @@ public class UserController {
     }
 
     @PatchMapping("{id}")
-    public UserDto updateUser(@PathVariable int id, @RequestBody CreateUpdateUserRequest request) {
+    public UserDto updateUser(@PathVariable int id,@Valid @RequestBody CreateUpdateUserRequest request) {
         return service.updateUser(id, request);
     }
 

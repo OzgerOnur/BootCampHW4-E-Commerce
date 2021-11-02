@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductDto createProduct(@RequestBody CreateUpdateProductRequest request) {
+    public ProductDto createProduct(@Valid @RequestBody CreateUpdateProductRequest request) {
         return service.createProduct(request);
     }
 
@@ -29,7 +30,7 @@ public class ProductController {
     }
 
     @PatchMapping("{id}")
-    public ProductDto updateProduct(@PathVariable int id, @RequestBody CreateUpdateProductRequest request) {
+    public ProductDto updateProduct(@PathVariable int id,@Valid @RequestBody CreateUpdateProductRequest request) {
         return service.updateProduct(id, request);
     }
 

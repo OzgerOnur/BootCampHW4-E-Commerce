@@ -5,7 +5,6 @@ import com.kodluyoruz.weekFourHomework.exceptions.errors.NotFoundException;
 import com.kodluyoruz.weekFourHomework.model.dto.OrderDto;
 import com.kodluyoruz.weekFourHomework.model.entity.Basket;
 import com.kodluyoruz.weekFourHomework.model.entity.Order;
-import com.kodluyoruz.weekFourHomework.model.request.OrderRequest;
 import com.kodluyoruz.weekFourHomework.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

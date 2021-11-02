@@ -14,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 public class BasketItemRequest {
+
     private Integer quantity;
     private Integer productId;
 

@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 public class AddUpdateBasketRequest {
 
-    private Integer userId;
+
     private List<BasketItemRequest> basketItems;
 
 

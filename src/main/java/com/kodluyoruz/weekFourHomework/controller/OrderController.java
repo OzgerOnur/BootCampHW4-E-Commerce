@@ -1,10 +1,8 @@
 package com.kodluyoruz.weekFourHomework.controller;
 
 import com.kodluyoruz.weekFourHomework.model.dto.OrderDto;
-import com.kodluyoruz.weekFourHomework.model.request.OrderRequest;
 import com.kodluyoruz.weekFourHomework.service.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

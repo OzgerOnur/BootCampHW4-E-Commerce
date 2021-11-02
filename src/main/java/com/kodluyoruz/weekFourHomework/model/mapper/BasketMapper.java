@@ -16,7 +16,7 @@ public interface BasketMapper {
 
     BasketDto basketToBasketDto(Basket basket);
 
-    Basket requestToBasket(AddUpdateBasketRequest request);
+    Basket requestToBasket(Integer userId, AddUpdateBasketRequest request);
 
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

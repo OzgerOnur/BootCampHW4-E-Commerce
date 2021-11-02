@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,7 +19,7 @@ public class CategoryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CategoryDto createCategory(@RequestBody CreateUpdateCategoryRequest request){
+    public CategoryDto createCategory(@Valid @RequestBody CreateUpdateCategoryRequest request){
         return service.createCategory(request);
     }
 
@@ -33,7 +34,7 @@ public class CategoryController {
     }
 
     @PatchMapping("{id}")
-    public CategoryDto updateCategory(@PathVariable int id, @RequestBody CreateUpdateCategoryRequest request) {
+    public CategoryDto updateCategory(@PathVariable int id,@Valid @RequestBody CreateUpdateCategoryRequest request) {
         return service.updateCategory(id, request);
     }
 
