@@ -19,9 +19,9 @@ public interface OrderMapper {
     OrderMapper ORDER_MAPPER = Mappers.getMapper(OrderMapper.class);
 
     @Mapping(target = "id",ignore = true)
-    @Mapping(target = "creationDate",ignore = true)
-    @Mapping(target = "lastModificationDate",ignore = true)
-    @Mapping(target = "deleted",ignore = true)
+   // @Mapping(target = "creationDate",ignore = true)
+//    @Mapping(target = "lastModificationDate",ignore = true)
+//    @Mapping(target = "deleted",ignore = true)
     @Mapping(source = "basketItems",target = "orderItems",qualifiedByName = "basketItemTOrderItem")
     @Mapping(source = "basketItems",target = "totalPrice",qualifiedByName = "basketToPrice")
     Order basketToOrder(Basket basket);
@@ -34,9 +34,9 @@ public interface OrderMapper {
     }
 
     @Mapping(target = "id",ignore = true)
-    @Mapping(target = "creationDate",ignore = true)
-    @Mapping(target = "lastModificationDate",ignore = true)
-    @Mapping(target = "deleted",ignore = true)
+   // @Mapping(target = "creationDate",ignore = true)
+//    @Mapping(target = "lastModificationDate",ignore = true)
+//    @Mapping(target = "deleted",ignore = true)
     @Named("basketItemTOrderItem")
     @Mapping(target ="price",source = "product",qualifiedByName = "productToPrice")
     OrderItem basketItemTOrderItem(BasketItem basketItem);
@@ -49,6 +49,8 @@ public interface OrderMapper {
 
 
     OrderDto orderToOrderDto(Order order);
+
+    List<OrderDto> ordersToOrdersDto(List<Order> orders);
 
     OrderItemDto orderItemToOrderItemDto(OrderItem orderItem);
 }
