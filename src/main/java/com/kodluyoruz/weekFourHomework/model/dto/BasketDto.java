@@ -14,6 +14,6 @@ import java.util.List;
 public class BasketDto {
     private Integer id;
     private Integer userId;
-    private List<BasketItemDto> basketItems; // todo Item yapınca döngüye giriyor ?
+    private List<BasketItemDto> basketItems;
 
 }

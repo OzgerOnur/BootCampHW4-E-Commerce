@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 public class BasketController {
     private final BasketService basketService;
 
-    @PostMapping// if i putted there get, i couldnt have sent requestbody. i wanna send put because i dont wanna basket id being seen
-    public BasketDto getBasket(@RequestBody AddUpdateBasketRequest basketRequest){
-        return basketService.getBasket(basketRequest);
+    @GetMapping("{userId}")
+    public BasketDto getBasket(@PathVariable Integer userId){
+        return basketService.getBasket(userId);
     }
 
     @PutMapping

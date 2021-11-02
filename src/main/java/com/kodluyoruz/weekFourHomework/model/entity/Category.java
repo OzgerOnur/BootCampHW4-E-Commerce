@@ -25,7 +25,6 @@ public class Category extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "category") //  ,mappedBy = "category"
     private List<Product> products;
 
-    //?? todo category islerini duzelt
     @Column(name = "parent_id")
     private Integer parentId;
 

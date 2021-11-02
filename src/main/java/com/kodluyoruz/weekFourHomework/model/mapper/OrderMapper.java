@@ -6,22 +6,19 @@ import com.kodluyoruz.weekFourHomework.model.entity.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.mapstruct.control.MappingControl;
+;
 import org.mapstruct.factory.Mappers;
-import org.springframework.data.annotation.LastModifiedDate;
-
-import javax.persistence.Column;
-import java.util.Date;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface OrderMapper {
     OrderMapper ORDER_MAPPER = Mappers.getMapper(OrderMapper.class);
 
+
+    @Mapping(target = "creationDate",ignore = true)
+    @Mapping(target = "lastModificationDate",ignore = true)
+    @Mapping(target = "deleted",ignore = true)
     @Mapping(target = "id",ignore = true)
-   // @Mapping(target = "creationDate",ignore = true)
-//    @Mapping(target = "lastModificationDate",ignore = true)
-//    @Mapping(target = "deleted",ignore = true)
     @Mapping(source = "basketItems",target = "orderItems",qualifiedByName = "basketItemTOrderItem")
     @Mapping(source = "basketItems",target = "totalPrice",qualifiedByName = "basketToPrice")
     Order basketToOrder(Basket basket);
@@ -33,10 +30,11 @@ public interface OrderMapper {
                 .sum();
     }
 
+
+    @Mapping(target = "creationDate",ignore = true)
+    @Mapping(target = "lastModificationDate",ignore = true)
+    @Mapping(target = "deleted",ignore = true)
     @Mapping(target = "id",ignore = true)
-   // @Mapping(target = "creationDate",ignore = true)
-//    @Mapping(target = "lastModificationDate",ignore = true)
-//    @Mapping(target = "deleted",ignore = true)
     @Named("basketItemTOrderItem")
     @Mapping(target ="price",source = "product",qualifiedByName = "productToPrice")
     OrderItem basketItemTOrderItem(BasketItem basketItem);

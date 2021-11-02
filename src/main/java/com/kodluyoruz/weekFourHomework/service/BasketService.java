@@ -29,8 +29,8 @@ public class BasketService {
         return basketRepository.save(basket);
 
     }
-    public BasketDto getBasket(AddUpdateBasketRequest request) {
-        Basket basket = getBasketEntity(request.getUserId());
+    public BasketDto getBasket(Integer userId) {
+        Basket basket = getBasketEntity(userId);
         return BASKET_MAPPER.basketToBasketDto(basket);
     }
 
